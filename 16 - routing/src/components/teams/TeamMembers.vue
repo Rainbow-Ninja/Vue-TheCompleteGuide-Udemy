@@ -28,6 +28,7 @@ export default {
   },
   created() {
     // this.$route.path // /teams
+    console.log('ROUTE', this.$route);
     const teamId = this.$route.params.teamId;
     const selectedTeam = this.teams.find(team => team.id === teamId);
     const members = selectedTeam.members;
@@ -37,7 +38,7 @@ export default {
       selectedMembers.push(selectedUser);
     }
     this.members = selectedMembers;
-    this.teamName = this.selectedTeam.name;
+    this.teamName = selectedTeam.name;
   }
 };
 </script>
