@@ -11,7 +11,21 @@ export default {
   components: {
     UserItem,
   },
+  data() {
+    return {
+      savedChanges: false,
+    };
+  },
   inject: ['users'],
+  beforeRouteLeave(to, from, next) {
+    console.log('To: ', to, 'From: ', from, 'Next: ', next);
+    if (this.savedChanges) {
+      next();
+    } else {
+      const userWantsToLeave = confirm('Are you sure? You have unsaved changes!'); // this will be a boolean
+      next(userWantsToLeave); // next(false) will block them from leaving
+    }
+  }
 };
 </script>
 
