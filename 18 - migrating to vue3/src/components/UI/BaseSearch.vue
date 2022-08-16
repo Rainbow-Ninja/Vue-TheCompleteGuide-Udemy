@@ -8,11 +8,16 @@
 export default {
   props: ['searchTerm'],
   emits: ['search'],
-  methods: {
-    search(event) {
-      this.$emit('search', event.target.value);
-    },
-  },
+
+  setup(props, emit) {
+    function search(event) {
+      emit('search', event.target.value);
+    }
+
+    return {
+      search
+    }
+  }
 };
 </script>
 
